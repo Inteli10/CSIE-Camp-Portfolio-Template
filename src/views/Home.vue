@@ -1,20 +1,28 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import MdiGithub from "~icons/mdi/github";
 import MdiInstagram from "~icons/mdi/instagram";
 import Typing from "@components/Typing.vue";
 
 const step = ref(0);
+
+watch(step, () => {
+    if (step.value === 1) {
+        window.setTimeout(() => {
+            step.value++;
+        }, 300);
+    }
+});
 </script>
 <template>
     <div class="w-full overflow-y-auto px-8 pt-16 sm:px-12 sm:pt-20 lg:px-16 lg:pt-24">
         <Typing
             v-if="step >= 0"
             @done="step++"
-            text="My Portfolio"
+            text="Hiiiiiii my name is hank "
             class="mb-2 block text-2xl sm:text-3xl lg:text-4xl"
         />
-        <Typing v-if="step >= 1" @done="step++" text="Hello!" :speed="60" />
+        <p v-if="step >= 1">Hiiiiiiiii <br />tests</p>
         <a
             v-if="step >= 2"
             class="mt-8 flex items-center text-lg text-gray-500 transition-all hover:text-gray-700"
